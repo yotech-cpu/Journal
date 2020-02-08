@@ -11,7 +11,7 @@ circle (100, 100, 50);
 circle (50,100, 50);
 circle (100, 150, 50);
 ```
-Last week's code in Java
+Last week's code in Java ^
 
 ```.py
 def setup():
@@ -37,6 +37,8 @@ def mouseClicked():
     textSize(s/3);
     text ("Y*Y", x, y)
 ```
+Code as done in class (connect circles to the middle of the screen) ^
+
 Q.2 What did I learn?
 
 I understood that within the same framework of python, coding could differ significantly however, the knowledge of flowcharts as a base always remains useful. Previously, I was unaware of the usefullness of the global command until I had to complete the homework assignment.
