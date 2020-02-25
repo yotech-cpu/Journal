@@ -2,7 +2,7 @@ Q.1 What did we do?
 
 In our lesson on the 18th of February (Tuesday), we were introduced to rectangles in Processing python. We further learnt how to curve the edges of the rectangles with a custom radius for the curve to get rounded rectangles. Then with the use of if statements, our past knowledge on generating random numbers and our knowledge in circles (for a grid), to produce an  unbiased random dice generator. After that, we made the dice biased to a particular number and had a fun acitivity of testing whether we could notice which number was biased.
 
-``` .py
+```.py
 def setup():
     size (600, 600)
     background (255)
