@@ -13,14 +13,15 @@ y = [100]
 people = 20
 count = 0
 infected = 0
-h = ["Healthy","Sick","Recovered"]
+recovered = 0
+h = ["Sick"]
 moving = people + 1
 days = [30, -1]
 
 def bargraph():
     global infected, x, moving
     line(0,500,500,500)
-    healthy = len(x) - infected
+    healthy = len(x) - (infected + recovered)
     fill(255)
     rect(150, 520, 10*healthy, 20)
     fill(0)
@@ -30,10 +31,13 @@ def bargraph():
     fill(255,0,0)
     rect(150, 550, 10*infected, 20)
     text("Infected {}".format(infected), 40, 570)
+    fill(0,0,255)
+    text("Recovered {}".format(recovered), 20, 600)
+    rect(150, 580, 10*recovered, 20)
 
 def setup():
-    global people, infected, healthy
-    size(500,600)
+    global people, healthy
+    size(500,650)
     for n in range(people):
         x.append(random(0,500))
         y.append(random(0,500))
@@ -47,12 +51,14 @@ def distance(x1, x2, y1, y2):
     return c
 
 def draw():
-    global x, people, h, y, count, infected, moving
+    global x, people, h, y, count, infected, moving, recovered
     background(255)
     infected = 0
     for i in range(len(h)):
         if h[i] == "Sick":
             infected += 1
+        elif h[i] == "Recovered":
+            recovered += 1
     bargraph()
     
     for ind in range(len(x)):
@@ -68,8 +74,9 @@ def draw():
                 continue
             d = distance(x[ind], x[nei], y[ind], y[nei])
             if d < 40 and (h[nei] == "Sick" or h[ind] == "Sick"):
-                h[ind] = "Sick"
-                h[nei] = "Sick"
+                if (h[nei] != "Recovered" and h[ind] != "Recovered"):
+                    h[ind] = "Sick"
+                    h[nei] = "Sick"
                 days[ind] = int(random(20, 50))
         if h[ind] == "Sick":
             days[ind] -= 1
@@ -87,6 +94,7 @@ def draw():
         elif y[m] < 20:
             y[m] = 20
     count += 1
+    recovered = 0
     textSize(20)
     fill(0)
     text("Run: ", 400, 20)
